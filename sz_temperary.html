@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta name="author" content="failte,failte@163.com">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta http-equiv="Window-target" content="_top">
+    <base target="_blank" />
+	<style>
+		*{
+		margin: 0;
+		padding: 0;
+		}
+		h1 {
+		margin: 0 auto;
+		text-align: center;
+		width: 500px;
+		height: 60px;
+		line-height: 60px;
+		font-size: 40px;
+		}
+		p {
+		margin: 0 auto;
+		text-align: left;
+		width: 500px;
+		height: 40px;
+		line-height: 40px;
+		font-size: 16px;
+		}
+		p input,
+		p span {
+		margin-left: 10px;
+		}
+		button {
+		display: block;
+		margin: 0 auto;
+		text-align: center;
+		width: 80px;
+		height: 30px;
+		line-height: 30px;
+		}
+		textarea {
+		display: block;
+		margin: 0 auto;
+		text-align: left;
+		width: 500px;
+		line-height: 40px;
+		font-size: 16px;
+		}
+	</style>
+    <title>深圳年度平均温度排行榜</title>
+</head>
+<body>
+	<h1>深圳年度平均温度排行榜</h1>
+	<p>年份<input type="text"></p>
+	<p>测试月数<input type="text"></p>
+	<button>提交</button>
+	<p>合计温度<span></span></p>
+	<p>最高温度<span></span></p>
+	<p>最低温度<span></span></p>
+	<p>平均温度<span></span></p>
+	<p>温度高低排序</p>
+	<textarea></textarea>
+</body>
+<script>
+var className=document.getElementsByTagName("input")[0];
+var personNumber=document.getElementsByTagName("input")[1];
+var btn=document.getElementsByTagName("button")[0];
+var total=document.getElementsByTagName("span")[0];
+var max=document.getElementsByTagName("span")[1];
+var min=document.getElementsByTagName("span")[2];
+var ave=document.getElementsByTagName("span")[3];
+var rank=document.getElementsByTagName("textarea")[0];
+
+var sum=0;
+var arr;
+var temp=0;
+var sort="";
+//19,15,12,13,16,17,14,18,11
+btn.onclick=function(){
+	temp=prompt("输入需要统计月的温度，以英文逗号分隔");
+	arr=temp.split(",");
+	for(let i=0;i<arr.length;i++){
+		arr[i]=parseInt(arr[i]);
+	}
+	if(arr.length!=personNumber.value){
+		alert("月数与输入个数不一致，将自动调整输入月数");
+		personNumber.value=arr.length;
+	}
+	console.log(arr);
+	for(let i=0;i<arr.length-1;i++){
+		for(let j=i+1;j<arr.length;j++){
+			if(arr[i]<arr[j]){
+				arr[i]=arr[i]+arr[j];
+				arr[j]=arr[i]-arr[j];
+				arr[i]=arr[i]-arr[j];
+			}
+		}
+	}
+	arr.forEach(function(item, index, array){
+		sum+=item;
+		sort=sort+item+" ";
+	});
+	total.innerHTML=sum;
+	max.innerHTML=arr[0];
+	min.innerHTML=arr[arr.length-1];
+	ave.innerHTML=(sum/arr.length).toFixed(2);
+	rank.innerHTML=sort;
+}
+</script>
+</html>

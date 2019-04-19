@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>完美轮播图</title>
+	</head>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		.banner {
+			position: relative;
+			width: 810px;
+			height: 320px;
+			margin: 50px auto;
+			background: grey;
+			overflow: hidden;
+		}
+
+		.img-list {
+			list-style: none;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 5240px;
+			height: 320px;
+		}
+
+		.img-list li {
+			float: left;
+		}
+
+		.banner-nav-list {
+			list-style: none;
+			position: absolute;
+			right: 100px;
+			bottom: 50px;
+		}
+
+		.banner-nav-list li {
+			background: red;
+			float: left;
+			width: 20px;
+			height: 20px;
+			margin-right: 10px;
+			cursor: pointer;
+			text-align: center;
+		}
+
+		.banner-nav-list li.active {
+			background: yellow;
+		}
+
+		.banner .toLeft {
+			width: 60px;
+			height: 60px;
+			background: url(images/btn.gif);
+			position: absolute;
+			left: 30px;
+			top: 120px;
+			/*opacity: 0;*/
+		}
+
+		.banner .toRight {
+			width: 60px;
+			height: 60px;
+			background: url(images/btn.gif) 0px 60px;
+			position: absolute;
+			right: 30px;
+			top: 120px;
+			/*opacity: 0;*/
+		}
+
+		#arr {
+			opacity: 0;
+		}
+
+		body {
+			background: #666;
+		}
+
+		ul {
+			padding: 0;
+			margin: 0;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		img {
+			border: 0;
+		}
+
+		.play {
+			width: 400px;
+			height: 430px;
+			margin: 50px auto 0;
+			background: #999;
+			font: 12px Arial;
+		}
+	</style>
+	<body>
+		<div class="banner" id="banner">
+			<ul class="img-list" id="img-list">
+				<li index="0"><img src="images/001.jpg"></li>
+				<li index="1"><img src="images/002.jpg"></li>
+				<li index="2"><img src="images/003.jpg"></li>
+				<li index="3"><img src="images/004.jpg"></li>
+				<li index="0"><img src="images/001.jpg"></li>
+			</ul>
+
+			<ul class="banner-nav-list" id="banner-nav-list">
+				<li class="active">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ul>
+			<div id="arr">
+				<div class="toLeft" id="toLeft"></div>
+				<div class="toRight" id="toRight"></div>
+			</div>
+		</div>
+	</body>
+	<script>
+		var banner=document.getElementById("banner");
+		var img_list = document.getElementById("img-list");
+		var btn_list = document.getElementById("banner-nav-list");
+		var lis = btn_list.children;
+		var arr = document.getElementById("arr");
+		var left = document.getElementById("toLeft");
+		var right = document.getElementById("toRight");
+
+		var timer=null;
+		var index=0;
+
+		banner.onmouseenter=function(){
+			arr.style.opacity=1;
+			clearInterval(timer);
+		}
+		banner.onmouseleave=function(){
+			arr.style.opacity=0;
+			autoPlay();
+		}
+		btn_list.onclick=function(event){
+			var e=event || window.event;
+			var target=e.target || e.srcElement;
+			if(target.tagName=="LI"){
+				index = Array.from(lis).indexOf(target);
+				animated_chain(img_list, { "left": -810 * index });
+				choose(index, lis);
+			}
+		}
+		left.onclick=function(){
+			if (index == 0) {
+				index = 4;
+				img_list.style.left = -810 * index+"px";
+			}
+			index--;
+			animated_chain(img_list, { "left": -810*index});
+			choose(index, lis);
+		}
+		right.onclick=function(){
+			index++;
+			animated_chain(img_list, { "left": -810 * index }, function(){
+				if (index == 4){
+					index = 0;
+					img_list.style.left = 0;
+				}
+			});
+			if (index == 4) choose(0, lis);
+			else choose(index, lis);
+		}
+		
+		autoPlay();
+		
+		function autoPlay(){
+			timer=setInterval(() => {
+				index++;
+				animated_chain(img_list, { "left": -810 * index }, function () {
+					if (index == 4) {
+						index = 0;
+						img_list.style.left = 0;
+					}
+				});
+				if (index == 4) choose(0, lis);
+				else choose(index, lis);
+			}, 2000);
+		}
+		function choose(index, list) {
+			for(var i=0; i<list.length; i++){
+				list[i].className="";
+			}
+			list[index].className="active";
+		}
+		function getStyle(el, attr) {
+			return window.getComputedStyle ? window.getComputedStyle(el)[attr] : el.currentStyle[attr];
+		}
+		function animated_chain(el, target, callback) {
+			clearInterval(el.timer);
+			var step;
+			var flag;
+			var step_0;
+			el.timer = setInterval(() => { //定时器私有化，实现多个物体共享同一个包装函数进行运动
+				for (var item in target) {
+					flag = true;
+					if (item == "opacity") { //透明度范围0-100，将透明度乘以100，避免数字太小时的四舍五入
+						if (target[item] == getStyle(el, item) * 100) {
+							el.style[item] = target[item] / 100;
+						} else {
+							step_0 = target[item] - getStyle(el, item) * 100;
+							step = step_0 < 0 ? Math.floor(step_0 / 10) : Math.ceil(step_0 / 10);
+							el.style[item] = (getStyle(el, item) * 100 + step) / 100;
+							flag = false;
+						}
+					} else if (item == "zIndex") {
+						el.style[item] = target[item];
+						flag = false;
+					} else {
+						if (target[item] == parseInt(getStyle(el, item))) { //边框、内边距：style.width、offsetWidth、clientWidth区别
+							el.style[item] = target[item] + "px";
+						} else {
+							step_0 = target[item] - parseInt(getStyle(el, item));
+							step = step_0 < 0 ? Math.floor(step_0 / 10) : Math.ceil(step_0 / 10);
+							el.style[item] = parseInt(getStyle(el, item)) + step + "px";
+							flag = false;
+						}
+					}
+				}
+				if (flag) {
+					clearInterval(el.timer);
+					if (callback) {
+						callback();
+					}
+				}
+			}, 10);
+		}
+	</script>
+</html>

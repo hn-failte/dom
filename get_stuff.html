@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>随机抽员工</title>
+</head>
+<body>
+    <button>抽取五个员工</button>
+    <script>
+        //随机从arr中拿到五个元素输出，五个元素不能相同
+        var arr = ["张一","张二","张三","张四","张五","张六","张七","张八","张九","张十"];
+        var temparr=arr.map((item)=>{return item});
+
+        let btn=document.getElementsByTagName("button")[0];
+        btn.onclick=function(){
+            let stus=[]
+            for(let i=0;i<5;i++) stus.push(temparr.splice(get(temparr), 1))
+            temparr=arr.map((item)=>{return item});//下次可以抽取之前抽取抽取过的
+            alert(stus);
+        }
+        function get(array){
+            if(array.length<=0) throw new Error("array must hava at lest 1 elements");
+            return Math.floor(Math.random()*array.length)
+        }
+    </script>
+</body>
+</html>

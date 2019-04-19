@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>摇骰子</title>
+        <meta charset="UTF-8">
+        <link href="css/stylea2.css" rel="stylesheet">
+        
+    </head>
+    <body>
+        <div id="container">
+            <img src="images/dice_1.png" id="dice" alt="">
+        </div>
+        <div id="command">
+            <input id="btn" type="button" value="摇一摇">
+        </div>
+    </body>
+</html>
+<script>
+    var dice=document.getElementById("dice");
+    var btn=document.getElementById("btn");
+    btn.onclick=function(){
+        dice.src="images/diceDynamic.gif";
+        setTimeout(function(){
+            dice.src="images/dice_"+Math.ceil(Math.random()*6)+".png";
+        }, 3000);
+    }
+</script>

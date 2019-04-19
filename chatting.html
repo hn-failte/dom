@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>聊天对话框</title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			section{
+				width: 400px;
+				padding: 10px;
+				border: solid black 1px;
+				float: left;
+				margin-left: 20px;
+			}
+			.context{
+				width: 400px;
+				height: 300px;
+				border: 1px dashed #C1C1C1;
+				overflow: scroll;
+				margin-bottom: 10px;
+			}
+			textarea{
+				width: 400px;
+				height: 100px;
+			}
+			button{
+				width: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<div class="context"></div>
+			<textarea></textarea>
+			<button id="btn1">发送</button>
+		</section>
+		<section>
+			<div class="context"></div>
+			<textarea></textarea>
+			<button id="btn2">发送</button>
+		</section>
+	</body>
+</html>
+<script type="text/javascript">
+    var btn1 = document.getElementById("btn1");
+    var btn2 = document.getElementById("btn2");
+    var context = document.getElementsByClassName("context");
+    var textarea = document.getElementsByTagName("textarea");
+    btn1.onclick=function(){
+        var p=document.createElement("p");
+        var img=document.createElement("img");
+        var span=document.createElement("span");
+        img.width=30;
+        img.style="height: 100%; vertical-align: middle;";
+        img.src="images/star-full.png";
+        span.innerText=textarea[0].value;
+        span.style="display: inline-block; margin-left: 5px; vertical-align: middle;";
+        p.style="line-height: 30px; height: 30px;";
+        p.appendChild(img);
+        p.appendChild(span);
+        var rp=p.cloneNode(true);
+        p.style.direction="rtl";
+        context[0].appendChild(p);
+        context[1].appendChild(rp);
+    }
+    btn2.onclick=function(){
+        var p=document.createElement("p");
+        var img=document.createElement("img");
+        var span=document.createElement("span");
+        img.width=30;
+        img.style="height: 100%; vertical-align: middle;";
+        img.src="images/dice_6.png";
+        span.innerText=textarea[0].value;
+        span.style="display: inline-block; margin-left: 5px; vertical-align: middle;";
+        p.style="line-height: 30px; height: 30px;";
+        p.appendChild(img);
+        p.appendChild(span);
+        var rp=p.cloneNode(true);
+        p.style.direction="rtl";
+        context[1].appendChild(p);
+        context[0].appendChild(rp);
+    }
+</script>

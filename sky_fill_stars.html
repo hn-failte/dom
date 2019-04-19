@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sky Fill Stars</title>
+</head>
+<body>
+    
+</body>
+<script>
+    document.body.style.background="#2c3e50";
+    setInterval(createStars , 1);
+    function createStars(){
+        var img=document.createElement("img");
+        img.src="images/star-full.png";
+        img.style.position="absolute";
+        img.style.top=(window.innerHeight-40)*Math.random().toFixed(2)+"px";
+        img.style.left=(window.innerWidth-40)*Math.random().toFixed(2)+"px";
+        img.width=img.height=5+35*Math.random().toFixed(2);
+        document.body.appendChild(img);
+        console.log((screen.height-40)*Math.random().toFixed(2));
+    }
+</script>
+</html>

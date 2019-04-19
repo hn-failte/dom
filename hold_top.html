@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>粘性定位</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        img {
+            vertical-align: top;
+        }
+
+        .top img {
+            height: 168px;
+        }
+
+        .main {
+            margin: 0 auto;
+            width: 1000px;
+            margin-top: 10px;
+            padding-top: 1500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top" id="top">
+        <img src="images/top.png" alt="" />
+    </div>
+    <div class="nav" id="Q-nav">
+        <img src="images/nav.png" alt="" />
+    </div>
+    <div class="main"></div>
+</body>
+
+</html>
+<script type="text/javascript">
+    var nav = document.getElementsByClassName("nav")[0];
+
+    /**
+     * 集锦
+     * window可用document替换
+     * document.documentElement处于现代浏览器中使用
+     * document.body于IE8浏览器中使用
+     * scrollTop：元素距离窗口顶部的距离
+     * scrollLeft：元素距离窗口左部的距离
+     * CSS中称之为粘性定位
+     */
+    document.onscroll = function () {
+        var distance = document.documentElement.scrollTop || document.body.scrollTop;
+        if (distance > 168) {
+            nav.style.position = "fixed";
+            nav.style.top = "0px";
+        } else nav.style.position = "static";
+    }
+</script>

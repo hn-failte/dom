@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>侧边跟随</title>
+    <style>
+        img {
+            position: absolute;
+            left: 0;
+            top: 50px;
+        }
+
+        div {
+            width: 1000px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="images/aside.jpg" alt="" id="img" />
+    <div id="para">
+        <script>
+            for (let i = 0; i < 200; i++) {
+                document.write("<p>天王盖地虎，小鸡炖蘑菇</p>");
+            }
+        </script>
+    </div>
+    <script type="text/javascript">
+        var img = $("#img");
+        var para = $("#para");
+        var top0 = img.offsetTop;
+        var top;
+        var dis = 0;
+        var doc = document.documentElement || document.body;
+        document.onscroll = function (event) {
+            dis = parseInt(doc.scrollTop);
+            para.style.position = "relative";
+            animated_attr(img, dis + top0, "top");
+        }
+
+        function $(arg) {
+            var selector;
+            if (arg.search(/\#/g) > -1) {
+                selector = document.querySelector(arg);
+            } else {
+                selector = document.querySelectorAll(arg);
+            }
+            if (selector == null || selector.length == 0) throw new Error("Selector can not be Null");
+            return selector;
+        }
+
+        function getStyle(el, attr) {
+            return window.getComputedStyle ? window.getComputedStyle(el)[attr] : el.currentStyle[attr];
+        }
+
+        function animated_attr(el, target, attr) {
+            clearInterval(el.timer);
+            var step;
+            el.timer = setInterval(() => { //定时器私有化，实现多个物体共享同一个包装函数进行运动
+                if (attr == "opacity") { //透明度范围0-100，将透明度乘以100，避免数字太小时的四舍五入
+                    if (target == parseInt(getStyle(el, attr) * 100)) {
+                        el.style[attr] = target / 100;
+                        clearInterval(el.timer);
+                    } else {
+                        step = target - parseInt(getStyle(el, attr) * 100) < 0 ?
+                            Math.floor((target - parseInt(getStyle(el, attr) * 100)) / 10) :
+                            Math.ceil((target - parseInt(getStyle(el, attr) * 100)) / 10);
+                        el.style[attr] = (parseInt(getStyle(el, attr) * 100) + step) / 100;
+                    }
+                } else if (attr == "zIndex") {
+                    el.style[attr] = target;
+                } else {
+                    if (target == parseInt(getStyle(el, attr))) { //边框、内边距：style.width、offsetWidth、clientWidth区别
+                        el.style[attr] = target + "px";
+                        clearInterval(el.timer);
+                    } else {
+                        step = target - parseInt(getStyle(el, attr)) < 0 ?
+                            Math.floor((target - parseInt(getStyle(el, attr))) / 10) :
+                            Math.ceil((target - parseInt(getStyle(el, attr))) / 10);
+                        el.style[attr] = parseInt(getStyle(el, attr)) + step + "px";
+                    }
+                }
+            }, 10);
+        }
+    </script>
+</body>
+
+</html>

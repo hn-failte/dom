@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>DOM操作</title>	
+	</head>
+	<style>		
+		#detail{
+			width:200px;
+			height:200px;
+			border:1px solid black;		
+			display :none;
+			position:absolute;
+			left:500px;
+			top:300px;
+			background:#fff;
+		}
+		button{
+			height: 30px;
+			width: 100px;
+			font-size: 20px;
+			margin-bottom: 10px;
+		}
+	</style>
+	<body>
+		标题：<input type="text" id="topic_name" value=""/>&emsp;<br>
+		内容：<input type="text" id="topic_content" value=""/><br>
+		作者：<input type="text" id="author" value=""/><br>
+		电话：<input type="text" id="phone" placeholder="15570819396"/>&emsp;<br>
+		邮箱：<input type="text" id="email"  placeholder="hn-failte@gmail.com"/>&emsp;<br>
+		<hr />
+		<button id="saveBtn">添加</button>&emsp;<span id="checked" style="color: red; display: none;">以上验证未通过不能添加</span>
+		<table id="tab" border="1">
+			<tr>
+				<th>ID</th><th>帖子名称</th><th>内容预览</th><th>发布时间</th><th>作者</th><th>手机号</th><th>邮箱</th><th>操作</th>
+			</tr>
+			<tr>
+				<td>10000</td><td class="title">轮播图</td><td>轮播图demo</td><td>2018/04/15</td><td>Failte</td><td>15570819396</td><td>failteku@gmail.com</td><td name="option"><a name="detail" href="#">详细信息</a> <a class="delbtn" href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>10000</td><td class="title">轮播图</td><td>轮播图demo</td><td>2018/04/15</td><td>Failte</td><td>15570819396</td><td>failteku@gmail.com</td><td name="option"><a name="detail" href="#">详细信息</a> <a class="delbtn" href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>10000</td><td class="title">轮播图</td><td>轮播图demo</td><td>2018/04/15</td><td>Failte</td><td>15570819396</td><td>failteku@gmail.com</td><td name="option"><a name="detail" href="#">详细信息</a> <a class="delbtn" href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>10000</td><td class="title">轮播图</td><td>轮播图demo</td><td>2018/04/15</td><td>Failte</td><td>15570819396</td><td>failteku@gmail.com</td><td name="option"><a name="detail" href="#">详细信息</a> <a class="delbtn" href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>10000</td><td class="title">轮播图</td><td>轮播图demo</td><td>2018/04/15</td><td>Failte</td><td>15570819396</td><td>failteku@gmail.com</td><td name="option"><a name="detail" href="#">详细信息</a> <a class="delbtn" href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>10000</td><td class="title">轮播图</td><td>轮播图demo</td><td>2018/04/15</td><td>Failte</td><td>15570819396</td><td>failteku@gmail.com</td><td name="option"><a name="detail" href="#">详细信息</a> <a class="delbtn" href="javascript:;">删除</a></td>
+			</tr>
+		</table>
+		<div id="detail"></div>
+	</body>
+	<script src="see_as_get.js"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
