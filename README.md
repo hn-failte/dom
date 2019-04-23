@@ -23,3 +23,13 @@
 * [深圳平均温度计算](sz_temperary.html)
 
 * [打字游戏](typing_test.html)
+
+* [动态时钟](Clock.html)
+
+* [在线计算器](calc.html)
+
+* [猜数字游戏](guess.html)
+
+* [猜数字游戏h5](guess_h5.html)
+
+* [瀑布流](waterfall.html)

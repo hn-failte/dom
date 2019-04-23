@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta name="author" content="failte">
+<meta name="keyword" content="在线计算器,计算器,caculator,online">
+<meta name="description" content="一款在线计算器，可以实现基础的计算">
+<meta http-equiv="Window-target" content="_top">
+
+<link rel="stylesheet" type="text/css" href="calc.css">
+<title>在线计算器</title>
+</head>
+
+<body>
+<div class="container">
+
+<span class="title">在线计算器</span>
+
+<div id="screen" class="screen">0</div>
+<hr>
+<div class="keyboard">
+<div class="row"><button class="col" onclick="showMem()">MR</button><button class="col" onclick="addMem()">M+</button><button class="col" onclick="clearMem()">M-</button><button class="col" onclick="backNum()">BACK</button><button class="col" onclick="showTime()">TIME</button></div>
+
+<div class="row"><button class="col" onclick="number(7)">7</button><button class="col" onclick="number(8)">8</button><button class="col" onclick="number(9)">9</button><button class="col" onclick="div()">÷</button><button class="col" onclick="unpow()">∨</button></div>
+
+<div class="row"><button class="col" onclick="number(4)">4</button><button class="col" onclick="number(5)">5</button><button class="col" onclick="number(6)">6</button><button class="col" onclick="multi()">×</button><button class="col" onclick="pow()">∧</button></div>
+
+<div class="row"><button class="col" onclick="number(1)">1</button><button class="col" onclick="number(2)">2</button><button class="col" onclick="number(3)">3</button><button class="col" onclick="sub()">-</button><button class="col" onclick="clearScreen()">CE</button></div>
+
+<div class="row"><button class="col" onclick="number('.')">.</button><button class="col" onclick="number(0)">0</button><button class="col" onclick="caculation()">=</button><button class="col" onclick="add()">+</button><button class="col" onclick="allClear()">AC</button></div>
+</div>
+
+</div>
+<script src="calc.js">
+</script>
+</body>
+</html>

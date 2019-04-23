@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+实时时钟</title>
+</head>
+<style>
+body{
+background:gray;
+}
+#timer{
+position:absolute;
+left:50%;
+top:200px;
+transform:translate(-50%);
+width:350px;
+height:auto;
+text-align:center;
+font-size:5em;
+font-weight:700;
+color:white;
+background:url('images/bg.png');
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+</style>
+<body>
+<div id="container">
+<div id="timer">
+00：00：00
+</div>
+</div>
+<script>
+var h=0,m=0,s=0;
+var showtime=document.getElementById("timer");
+var da=new Date();
+
+function timegoes(){
+var str="";
+da=new Date();
+h=da.getHours();
+m=da.getMinutes();
+s=da.getSeconds();
+if(h<10 && h>=0)
+{
+str="0"+h+":";
+}
+else {str+=""+h+":";}
+
+if(m>=0 && m<10)
+{
+str+="0"+m+":";
+}
+else {str+=""+m+":";}
+
+if(s>=0 && s<10)
+{
+str+="0"+s;
+}
+else {str+=""+s+"";}
+showtime.innerHTML=str;
+}
+timegoes();
+
+setInterval("timegoes()",1000);
+</script>
+</body>
+</html>
