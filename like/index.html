@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Twitter“点赞”红心按钮CSS3动画特效|DEMO</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+  <body>
+    <div class="htmleaf-container">
+      <div id="container">
+        <div class="heart" id="like2" anim="like"></div>
+      </div>
+    </div>
+
+    <script>
+      var like = document.querySelector("#like2");
+      like.onclick = function () {
+        like.style.backgroundPosition = "";
+        // var D = like2.getAttribute("anim");
+
+        // if (D === "like") {
+        like.className = like.className + " heartAnimation";
+        like.setAttribute("anim", "unlike");
+        // } else {
+        //   like.className = like.className.replace(" heartAnimation", "");
+        //   like.setAttribute("anim", "like");
+        //   like.style.backgroundPosition = "left";
+        // }
+      };
+    </script>
+  </body>
+</html>

@@ -57,7 +57,7 @@
 		.banner .toLeft {
 			width: 60px;
 			height: 60px;
-			background: url(images/btn.gif);
+			background: url(../images/btn.gif);
 			position: absolute;
 			left: 30px;
 			top: 120px;
@@ -67,7 +67,7 @@
 		.banner .toRight {
 			width: 60px;
 			height: 60px;
-			background: url(images/btn.gif) 0px 60px;
+			background: url(../images/btn.gif) 0px 60px;
 			position: absolute;
 			right: 30px;
 			top: 120px;
@@ -106,11 +106,11 @@
 	<body>
 		<div class="banner" id="banner">
 			<ul class="img-list" id="img-list">
-				<li index="0"><img src="images/001.jpg"></li>
-				<li index="1"><img src="images/002.jpg"></li>
-				<li index="2"><img src="images/003.jpg"></li>
-				<li index="3"><img src="images/004.jpg"></li>
-				<li index="0"><img src="images/001.jpg"></li>
+				<li index="0"><img src="../images/001.jpg"></li>
+				<li index="1"><img src="../images/002.jpg"></li>
+				<li index="2"><img src="../images/003.jpg"></li>
+				<li index="3"><img src="../images/004.jpg"></li>
+				<li index="0"><img src="../images/001.jpg"></li>
 			</ul>
 
 			<ul class="banner-nav-list" id="banner-nav-list">
@@ -174,9 +174,9 @@
 			if (index == 4) choose(0, lis);
 			else choose(index, lis);
 		}
-		
+
 		autoPlay();
-		
+
 		function autoPlay(){
 			timer=setInterval(() => {
 				index++;

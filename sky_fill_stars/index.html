@@ -6,14 +6,14 @@
     <title>Sky Fill Stars</title>
 </head>
 <body>
-    
+
 </body>
 <script>
     document.body.style.background="#2c3e50";
     setInterval(createStars , 1);
     function createStars(){
         var img=document.createElement("img");
-        img.src="images/star-full.png";
+        img.src="../images/star-full.png";
         img.style.position="absolute";
         img.style.top=(window.innerHeight-40)*Math.random().toFixed(2)+"px";
         img.style.left=(window.innerWidth-40)*Math.random().toFixed(2)+"px";
