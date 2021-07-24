@@ -8,7 +8,7 @@
 
 * [模拟聊天](https://failte.cn/dom/chatting/index.html)
 
-* [动态时钟](https://failte.cn/dom/Clock/index.html)
+* [动态时钟](https://failte.cn/dom/clock/index.html)
 
 * [摇骰子](https://failte.cn/dom/dice/index.html)
 
